@@ -1,0 +1,41 @@
+# code to visualize data
+
+# install.packages("viridis") for colorblind friendly colors
+# install.packages("devtools") for 
+library(devtools)
+# install_github("ducciorocchini/imageRy")
+
+library(terra)
+library(imageRy)
+library(viridis)
+
+im.list()
+# Sentinel bands:
+# https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
+ 
+# For the whole course we are going to make use of = instead of <-
+# This is based on the following video:
+# https://www.youtube.com/watch?v=OJMpKCKH1hM
+
+b2 = im.import("sentinel.dolomites.b2.tif")
+plot(b2, col=cl)
+
+cl = colorRampPalette(c("aquamarine", "azure2", "blue"))(100)
+plot(b2, col=cl)
+
+
+plot(b2, col=inferno(100)) #to change colors thorugh viridis
+
+#exercise: change image in scales of gray
+cl = colorRampPalette(c("snow4", "snow3", "#FFFAFA"))(100) 
+plot(b2, col= cl)
+
+# par : function to show more images close to one another -multiframe- 
+par(mfrow=c(1,2))
+plot(b2, col=inferno(100)) 
+plot(b2, col=cl)
+
+#direct function
+im.multiframe(1,2)
+plot(b2, col=inferno(100))
+plot(b2, col=cl)
