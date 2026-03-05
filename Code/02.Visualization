@@ -55,21 +55,47 @@ b4 <- im.import("sentinel.dolomites.b4.tif")
 #import band 8 -corresponding to near infrared, 842nm beyond human vision
 b8 <- im.import("sentinel.dolomites.b8.tif")
 
-#exercise: multiframe with four bands and legends in line with wavelength
-cla <- colorRampPalette(c("blue4", "blue2", "blue1"))(100) 
-plot(b2, col= cla)
+#exercise: multiframe with four bands and legends in line with wavelength. Friendly reminder: click ENTER else something will miss
+clb <- colorRampPalette(c("blue4", "blue2", "blue1"))(100) 
+plot(b2, col= clb)
 
-clb <- colorRampPalette(c("green4", "green2", "green1"))(100) 
-plot(b3, col= clb)
+clg <- colorRampPalette(c("green4", "green2", "green1"))(100) 
+plot(b3, col= clg)
 
-clc <-colorRampPalette(c("red4", "red2", "red1"))(100) 
-plot(b4, col= clc)
+clr <-colorRampPalette(c("red4", "red2", "red1"))(100) 
+plot(b4, col= clr)
 
-cld <- colorRampPalette(c("rosybrown4", "rosybrown2", "rosybrown1"))(100) 
-plot(b8, col= cld)
+cln <- colorRampPalette(c("rosybrown4", "rosybrown2", "rosybrown1"))(100) 
+plot(b8, col= cln)
 
 im.multiframe(2,2)
-plot(b2, col=cla)
-plot(b3, col=clb)
-plot(b4, col= clc)
-plot(b8, col= cld)
+plot(b2, col=clb)
+plot(b3, col=clg)
+plot(b4, col= clr)
+plot(b8, col= cln)
+
+#how to stack
+sentinel <-c(b2,b3,b4,b8) #create a vector
+plot(sentinel)
+plot(sentinel, color=inferno(100))
+
+#all info about the vector
+> sentinel
+class       : SpatRaster 
+size        : 934, 1059, 4  (nrow, ncol, nlyr)
+resolution  : 10, 10  (x, y)
+extent      : 740350, 750940, 5158820, 5168160  (xmin, xmax, ymin, ymax)
+coord. ref. : WGS 84 / UTM zone 32N (EPSG:32632) 
+sources     : sentinel.dolomites.b2.tif  
+              sentinel.dolomites.b3.tif  
+              sentinel.dolomites.b4.tif  
+              sentinel.dolomites.b8.tif  
+names       : sentine~ites.b2, sentine~ites.b3, sentine~ites.b4, sentine~ites.b8 
+min values  :            1338,            1293,             750,            1159 
+max values  :            6903,            6780,            7229,            7313 
+
+#how to plot a single band from vector: choose from the vector description and connect the two things with $
+plot(sentinel$sentinel.dolomites.b8.tif)  
+
+# layer1=b2, layer2=b3, layer3=b4, layer4=b8 - or simply divide it in layer
+plot
