@@ -1,0 +1,75 @@
+# code to visualize data
+
+# install.packages("viridis") for colorblind friendly colors
+# install.packages("devtools") for 
+library(devtools)
+# install_github("ducciorocchini/imageRy")
+
+library(terra)
+library(imageRy)
+library(viridis)
+
+im.list()
+# Sentinel bands:
+# https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
+ 
+# For the whole course we are going to make use of = instead of <-
+# This is based on the following video:
+# https://www.youtube.com/watch?v=OJMpKCKH1hM
+
+b2 = im.import("sentinel.dolomites.b2.tif")
+plot(b2, col=cl)
+
+cl = colorRampPalette(c("aquamarine", "azure2", "blue"))(100)
+plot(b2, col=cl)
+
+
+plot(b2, col=inferno(100)) #to change colors thorugh viridis
+
+#exercise: change image in scales of gray
+cl = colorRampPalette(c("snow4", "snow3", "#FFFAFA"))(100) 
+plot(b2, col= cl)
+
+# par : function to show more images close to one another -multiframe- 
+par(mfrow=c(1,2))
+plot(b2, col=inferno(100)) 
+plot(b2, col=cl)
+
+#direct function
+im.multiframe(1,2)
+plot(b2, col=inferno(100))
+plot(b2, col=cl)
+
+#other visualizations 
+b2 = im.import("sentinel.dolomites.b2.tif") #call back the image on the blue spectrum
+#we search for another band https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/ and we switch from b2 to b3
+#import b3
+b3 <- im.import("sentinel.dolomites.b3.tif")
+
+#change ramp palette according to viridis package
+plot(b3, col=rainbow (100))
+
+#import band 4 - corresponding red
+b4 <- im.import("sentinel.dolomites.b4.tif")
+
+#import band 8 -corresponding to near infrared, 842nm beyond human vision
+b8 <- im.import("sentinel.dolomites.b8.tif")
+
+#exercise: multiframe with four bands and legends in line with wavelength
+cla <- colorRampPalette(c("blue4", "blue2", "blue1"))(100) 
+plot(b2, col= cla)
+
+clb <- colorRampPalette(c("green4", "green2", "green1"))(100) 
+plot(b3, col= clb)
+
+clc <-colorRampPalette(c("red4", "red2", "red1"))(100) 
+plot(b4, col= clc)
+
+cld <- colorRampPalette(c("rosybrown4", "rosybrown2", "rosybrown1"))(100) 
+plot(b8, col= cld)
+
+im.multiframe(2,2)
+plot(b2, col=cla)
+plot(b3, col=clb)
+plot(b4, col= clc)
+plot(b8, col= cld)
