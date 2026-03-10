@@ -99,3 +99,34 @@ plot(sentinel$sentinel.dolomites.b8.tif)
 
 # layer1=b2, layer2=b3, layer3=b4, layer4=b8 - or simply divide it in layer
 plot
+
+#visualization of more plots through ggplot2
+library(terra)
+library(imageRy)
+library(viridis)
+library(ggplot2)
+#search for im.ggplot
+#call back images
+b2 <- im.import("sentinel.dolomites.b2.tif") 
+b3 <- im.import("sentinel.dolomites.b3.tif")
+b4 <- im.import("sentinel.dolomites.b4.tif")
+b8 <- im.import("sentinel.dolomites.b8.tif")
+
+#generate ggplot visualization
+im.ggplot2(b8) 
+#generate multiframe visualization through patchwork package https://cran.r-project.org/web/packages/patchwork/index.html
+install.packages("patchwork")
+library(patchwork)
+p1 <- im.ggplot(b8) #assign plot to data
+p2 <- im.ggplot(b4)
+p1+p2
+
+#create plot with more than one band. NOTE: CAN'T USE MORE THAN THREE BANDS AT A TIME, due to the RGB scheme (red-green-blue)
+#RGB plotting
+sentinel <- c(b2,b3,b4,b8)#create stack
+# 1=b2 blue
+# 2=b3 green
+# 3=b4 red
+# 4=b8 near infrared
+im.plotRGB(sentinel, r=3, g=2, b=1) #http://127.0.0.1:24939/library/imageRy/html/im.plotRGB.html (image name, colors to be associated)
+#4 bands,3 filters. let's build it in the visible spectrum. This way, the produced image will show you the natural colors of the image as perceived from the human eye
