@@ -130,3 +130,50 @@ sentinel <- c(b2,b3,b4,b8)#create stack
 # 4=b8 near infrared
 im.plotRGB(sentinel, r=3, g=2, b=1) #http://127.0.0.1:24939/library/imageRy/html/im.plotRGB.html (image name, colors to be associated)
 #4 bands,3 filters. let's build it in the visible spectrum. This way, the produced image will show you the natural colors of the image as perceived from the human eye
+
+#HOW TO insert the fourth component -infrared-
+#first we remove the first band. in red we insert NIR, in green we insert red, in blue we insert green. We call this false colors. this way, NIR pops up red in the image
+im.plotRGB(sentinel, r=4, g=3, b=2) 
+#now we can build a multiframe with both
+im.multiframe(1,2)
+im.plotRGB(sentinel, r=3, g=2, b=1)
+im.plotRGB(sentinel, r=4, g=3, b=2)
+#create plot with subset for NIR
+plot(sentinel[[4]])
+im.plotRGB(sentinel, r=4, g=3, b=2) 
+
+#use NIR in green component
+im.plotRGB(sentinel, r=3, g=4, b=2) 
+
+#use NIR in blue component
+im.plotRGB(sentinel, r=3, g=2, b=4) 
+
+#plot the four components of RGB in a single multiframe
+im.multiframe(2,2)
+im.plotRGB(sentinel, r=3, g=2, b=1)
+im.plotRGB(sentinel, r=4, g=3, b=2)
+im.plotRGB(sentinel, r=3, g=4, b=2) 
+im.plotRGB(sentinel, r=3, g=2, b=4) 
+
+#what's important is where we put the NIR band. The others don't make much of a difference in positioning
+im.multiframe(1,2)
+im.plotRGB(sentinel, r=4, g=3, b=2) 
+im.plotRGB(sentinel, r=4, g=2, b=3) 
+
+#create scatter plot with correlations for all variables
+pairs(sentinel)
+
+#we can try also ggpairs -see next time, we need to convert image in data frame
+install.packages("GGally")
+library(GGally)
+
+#simplified, as long as you remember the position of your bands
+im.plotRGB(sentinel, 4,2,3)
+
+# plotRGB from terra
+plotRGB(sentinel, 4,2,3) #put this way it returns an error depending on the range values of my data
+plotRGB(sentinel, 4,2,3, stretch="lin")
+
+#we can make the stretch with histograms as well. 
+plotRGB(sentinel, 4,2,3, stretch="hist")
+
