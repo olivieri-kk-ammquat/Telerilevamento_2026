@@ -40,3 +40,26 @@ plot(EN_13)
 ENdif <- EN_01[[1]] - EN_13[[1]]
 dev.off() #remove multiframe
 plot(ENdif)
+
+#exercise: import all the greenland data and create a stack using c
+
+g00 <- im.import("greenland.2000.tif")
+g05 <- im.import("greenland.2005.tif")
+g10 <- im.import("greenland.2010.tif")
+g15 <- im.import("greenland.2015.tif")
+sg <- c(g00,g05,g10,g15)
+plot(sg)
+
+#okay, let's do the same for not a few images, but hundreds of images. in this case, I keep only the part of the name shared with all the files
+gr <- im.import("greenland")
+
+im.multiframe(1,2) #in this case, I won't see the ice melting rate between a moment or the other, but how the temperature on the ground changes
+plot(gr[[1]], col=plasma(100))
+plot(gr[[4]], col=plasma(100))
+#this way, I see the restriction of areas where the temperatures stay LOW. Using dif, let's see which areas were affected
+grdif <- gr[[4]] - gr[[1]]
+dev.off()
+plot(grdif)
+
+#let's make a plot in RGB, using instead of bands the three images coming from different years
+im.plotRGB(gr, r=1, g=2, b=4) #it's ugly, but it works. Generally, all of the areas which ended up being hotter in most recent years than they used to be have a blue-green color
