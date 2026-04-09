@@ -62,4 +62,36 @@ dev.off()
 plot(grdif)
 
 #let's make a plot in RGB, using instead of bands the three images coming from different years
-im.plotRGB(gr, r=1, g=2, b=4) #it's ugly, but it works. Generally, all of the areas which ended up being hotter in most recent years than they used to be have a blue-green color
+im.plotRGB(gr, r=1, g=2, b=4) #it's ugly, but it works. Generally, all of the areas which ended up being hotter in most recent years 
+than they used to be have a blue-green color
+
+#produce ridgeline plot. first import data
+library(terra)
+library(imageRy)
+library(viridis)
+im.list()
+#import data in bulk usingc common name. Sentinel2 NDVI is an index regarding plant BIOMASS variation
+ndvi <- im.import("Sentinel2_NDVI")
+#then, we create a histogram, to check the peaks of biomass for every part of the year
+hist(ndvi)
+#now we transform the separate histograms in a single ridgeline, using the package
+install.packages("ggridges")
+library(ggridges)
+im.ridgeline(ndvi,scale=1,palette="viridis")
+#now we need to change the name to the variables, since else it's going to show us always the last histogram
+names(ndvi) <- c("02feb", "05may", "08aug", "11nov")
+im.ridgeline(ndvi,scale=1,palette="viridis")
+#what happens if we change the scale? the peak is going to overlap in the other kernel
+im.ridgeline(ndvi,scale=2,palette="viridis")
+#let's compare ndvi values through scatter plot feb vs may
+plot(ndvi[[1]], ndvi[[2]])
+#from scatter plot to straight line 
+
+abline(0,1, col="red")
+
+# x min 0.3
+# y max 0.9
+
+plot(ndvi[[1]],ndvi[[2]], xlim=c(-0.3,0.9), ylim=c(-0.3,0.9))
+abline(0,1, col="red")
+#this allows us to plot multitemporal images so to exasperate a variation in time
