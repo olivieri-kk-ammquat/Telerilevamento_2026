@@ -6,8 +6,8 @@ library(viridis)
 library(ggplot2)
 library(patchwork)
 
-setwd("~/Desktop/")
-# c://blablabla/lknlnln
+setwd("C:/Users/Utente/Desktop") #cartella di riferimento
+# c://blablabla/lknlnln uso questo perché setwd("~/Desktop/") proposto dal prof non funziona su Windows
 
 # get the directory
 getwd()
