@@ -64,8 +64,8 @@ freq2006 <- freq(m2006c)
 perc2006 <- freq2006$count * 100/ ncell(m2006c)
 
 #now let's create our table #c is first column #the numbers are the result of our perc function
-data.frame(
+table <- data.frame(
   class= c("forest", "human"),
   perc1992=c(83,17), 
-  perc2006=c(45,55),
+  perc2006=c(45,55)
   )
