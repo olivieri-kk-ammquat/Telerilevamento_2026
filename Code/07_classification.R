@@ -69,3 +69,52 @@ table <- data.frame(
   perc1992=c(83,17), 
   perc2006=c(45,55)
   )
+
+#now, to make graphs using ggplot2. after the packages already called, we call back to ggplot
+library(ggplot2)
+library(patchwork)
+
+#we are going to use the table ready at hand, so the other libraries aren't mandatory
+table <- data.frame(
+  class= c("forest", "human"),
+  perc1992=c(83,17), 
+  perc2006=c(45,55)
+  )
+#function to plot is ggplot. Two topics: the content -the table- and the aestethics -defining the aspect of the graph-, which is the function aes.
+#three parameteres: x, y and color. Since we want to create a hist, we are going to put forest and human -class- together in x, percentage in y first for 92 then for 06 finally color
+ggplot(table, aes(x=class, y=perc1992, color=class))
+
+#now we defined the graph, but not yet the kind of graph. How do we define hist?A function for geometric bars, geom_bar
+ggplot(table, aes(x=class, y=perc1992, color=class)) + geom_bar(stat="identity", fill="white") 
+#mandatory: statistic used, in this case it's the direct value, else could be the mean etc. Then we define the color of the bars with fill
+
+#now let's do the same with 2006
+ggplot(table, aes(x=class, y=perc2006, color=class)) + geom_bar(stat="identity", fill="white")
+
+#patchwork package to plot together our two graphs #plot one by the other, but don't forget to add measures to the y
+p1 <- ggplot(table, aes(x=class, y=perc1992, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100)) + theme(legend.position="none") 
+
+p2 <- ggplot(table, aes(x=class, y=perc2006, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
+
+p1+p2
+
+#to remove the double legend use theme legend.position=none , we can also choose to remove/change a background using theme
++ theme(legend.position="none")
++ theme_minimal() #transparent
++ theme_dark() #dark
+
+
+
+
+# Using the ggplot2 package for the final graph
+# Using the ggplot2 package for the final graph
+p1 <- ggplot(table, aes(x=class, y=perc1992, color=class)) + 
+      geom_bar(stat="identity", fill="white") +
+      ylim(c(0,100)) +
+      theme(legend.position = "none")
+
+# Exercise: make the same plot for 2006
+p2 <- ggplot(table, aes(x=class, y=perc2006, color=class)) + 
+      geom_bar(stat="identity", fill="white") +
+      ylim(c(0,100))
+p1 + p2
