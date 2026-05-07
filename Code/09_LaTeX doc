@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{lineno}
+\usepackage{natbib}
+\linenumbers
+
+\title{First project attempt}
+\author{Chiara Olivieri, student}
+%date{5th May 2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\begin{abstract}
+    This is an article about the Magnus Archives, basic physics and fockin cats.
+\end{abstract}
+
+\section{Introduction} \label{sec:intro}
+Test… Test… Test… 1, 2, 3… Right.
+
+\bigskip My name is Jonathan Sims. I work for the Magnus Institute, London, an organisation dedicated to academic research into the esoteric and the paranormal. The head of the Institute, Mr. Elias Bouchard, has employed me to replace the previous Head Archivist, one Gertrude Robinson, who has recently passed away.
+
+\noindent I have been working as a researcher at the Institute for four years now and am familiar with most of our more significant contracts and projects.
+
+\smallskip Most reach dead ends, predictably enough, as incidents of the supernatural, such as they are – and I always emphasise there are very few genuine cases – tend to resist easy conclusions. When an investigation has gone as far as it can, it is transferred to the Archives.
+
+\section{Methods}
+In questo articolo abbiamo adoperato la funzione \ref{eq:newton}. Come abbiamo visto nella sezione 
+\begin{equation}
+F=G \times \sqrt{\frac{m_1\sqrt{m_2}}{r^2}}
+\label{eq:newton}
+\end{equation}
+
+In base alle formule \ref{eq:newton} abbiamo applicato le seguenti metodologie
+\begin{itemize}
+    \item analisi multivariata
+    \item analisi della varianza
+    \item analisi multitemporale
+\end{itemize}
+
+In alternativa si può fare anche così 
+\begin{enumerate}
+    \item analisi multivariata
+    \item analisi della varianza
+    \item analisi multitemporale
+\end{enumerate}
+
+\section{Results}
+And now, a fockin cat (Figure \ref{fig:cat})And another fockin cat  (Figure \ref{fig:cat2}) \citep{Claerebout2013}
+
+\begin{figure}
+    \centering
+    \includegraphics[width= 0.4\linewidth]{IMG_20251026_201355.jpg}
+    \caption{Fockin cat}
+    \label{fig:cat}
+\end{figure}
+
+
+
+\begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{fckncat.jpg}
+        \caption{another fockin cat}
+        \label{fig:cat2}
+\end{figure}
+
+\section{Discussion}
+ARCHIVIST
+Martin, are you sure about this?
+
+MARTIN
+I just want to make a statement about what happened to me. I mean, it… it’s what we do.
+
+ARCHIVIST
+No, what we do is research statements. Usually those made by liars and the mentally unwell. \citep{Uyen2025}
+
+MARTIN
+Well, I need to tell someone what happened, and you can vouch for the soundness of my mind, can’t you?
+
+ARCHIVIST
+…
+
+That is beside the point.
+
+MARTIN
+If you’re that worried about it, it doesn’t need to be an official statement. I just need a record of it.
+
+ARCHIVIST
+Fine. You’re right. I suppose. Statement of Martin Blackwood, archival assistant at the Magnus Institute, London, regarding…
+
+MARTIN
+A close encounter with something I believe to have once been Jane… Prentiss. \citep{Elliot2012}
+
+Fino al 70\%\ degli ascoltatori non conosce la funzione $F=G$
+
+\begin{thebibliography} {999} %di fianco, così da stabilire il numero di item della bibliografia
+\bibitem[Uyen et al.(2025)]{Uyen2025} Uyen, B.T., Marchetto, E., Tordoni, E. et al. From virtuality-to-reality: testing the effects of occurrence-based temporal settings on species distribution modeling prediction. COMMUNITY ECOLOGY 26, 685–696 (2025). https://doi.org/10.1007/s42974-025-00280-3]
+
+\bibitem[Claerebout et al (2013)]{Claerebout2013}Claerebout, Edwin, et al. "Ticks and associated pathogens collected from dogs and cats in Belgium." Parasites \& vectors 6.1 (2013): 183.
+
+\bibitem[Elliott et al. (2012)]{Elliot2012} Elliott, David E., and Joel V. Weinstock. "Where are we on worms?." Current opinion in gastroenterology 28.6 (2012): 551-556.
+\end{thebibliography}
+
+
+\end{document}
